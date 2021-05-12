@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload page</title>
+</head>
+<body>
+<h1>Add links</h1>
+<div> <span th:text="${message}"/>!</div>
+<div th:if="${start}">
+    <div>Нажимите на кнопку, чтобы добавить ссылки в прайс-лист</div>
+    <form method="POST" action="/add-link">
+        <input hidden type="text" name="path" th:value="${path}"/>
+        <input type="submit" value="Start">
+    </form>
+</div>
+</body>
+</html>
