@@ -23,10 +23,10 @@ public class MainController {
 
     @GetMapping("/")
     public String main(Model model){
-        return ("/index");
+        return ("index");
     }
 
-    @PostMapping("/upload")
+    @PostMapping("upload")
     public String handleFileUpload(@RequestParam("name") String name,
                                                  @RequestParam("file") MultipartFile file,
                                                  Model model){
@@ -43,29 +43,29 @@ public class MainController {
                 model.addAttribute("message", message);
                 model.addAttribute("path", pathFile);
                 model.addAttribute("start", true);
-                return ("/upload");
+                return ("upload");
             } catch (Exception e) {
                 message = "Вам не удалось загрузить " + name + " => " + e.getMessage();
                 model.addAttribute("message", message);
                 model.addAttribute("start", false);
-                return ("/upload");
+                return ("upload");
             }
         } else {
             message = "Вам не удалось загрузить " + name + " потому что файл пустой";
             model.addAttribute("message", message);
             model.addAttribute("start", false);
-            return ("/upload");
+            return ("upload");
         }
     }
 
-    @PostMapping("/add-link")
+    @PostMapping("add-link")
     public String handleAddLinks(@RequestParam("path") String pathFile, Model model) {
         System.out.println(pathFile);
         process.initialize(new File(pathFile));
         process.run();
         message = "Файл обработан";
         model.addAttribute("message", message);
-        return ("/add-link");
+        return ("add-link");
     }
 
 }
